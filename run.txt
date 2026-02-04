@@ -1,0 +1,8 @@
+PS C:\Users\LENOVO\Desktop\innomatic internship> git add assignment/ml.ipynb
+
+PS C:\Users\LENOVO\Desktop\innomatic internship> git add assignment/        
+
+PS C:\Users\LENOVO\Desktop\innomatic internship> git commit -m "Add ML assignment with Jupyter notebook and dataset"
+
+
+PS C:\Users\LENOVO\Desktop\innomatic internship> git push -u origin main
