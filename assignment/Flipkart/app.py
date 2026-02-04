@@ -98,13 +98,13 @@ def main():
         model, vectorizer, metadata = load_models()
     
     if model is None or vectorizer is None:
-        st.error("⚠️ Failed to load model. Please ensure model files exist in the 'models' directory.")
+        st.error(" Failed to load model. Please ensure model files exist in the 'models' directory.")
         st.info("Run the Jupyter notebooks (1-4) to train and save the model first.")
         return
     
     # Sidebar
     with st.sidebar:
-        st.header("📊 Model Information")
+        st.header(" Model Information")
         
         if metadata:
             st.success(f"**Model:** {metadata.get('model_name', 'Unknown')}")
@@ -119,7 +119,7 @@ def main():
         
         st.divider()
         
-        st.header("ℹ️ About")
+        st.header("ℹ About")
         st.write("""
         This application uses machine learning to analyze 
         product reviews from Flipkart and classify them as 
@@ -136,7 +136,7 @@ def main():
         st.caption("Built with Streamlit & Scikit-learn")
     
     # Main content area
-    tab1, tab2, tab3 = st.tabs(["🔍 Single Review", "📋 Batch Analysis", "📈 Model Performance"])
+    tab1, tab2, tab3 = st.tabs([" Single Review", " Batch Analysis", " Model Performance"])
     
     # Tab 1: Single Review Analysis
     with tab1:
@@ -176,9 +176,9 @@ def main():
         
         col_predict, col_clear = st.columns([1, 1])
         with col_predict:
-            predict_btn = st.button("🔮 Predict Sentiment", type="primary", use_container_width=True)
+            predict_btn = st.button(" Predict Sentiment", type="primary", use_container_width=True)
         with col_clear:
-            if st.button("🗑️ Clear", use_container_width=True):
+            if st.button(" Clear", use_container_width=True):
                 st.session_state.review_text = ""
                 st.rerun()
         
@@ -249,7 +249,7 @@ def main():
                     st.success(result['processed_text'])
         
         elif predict_btn:
-            st.warning("⚠️ Please enter a review text to analyze.")
+            st.warning(" Please enter a review text to analyze.")
     
     # Tab 2: Batch Analysis
     with tab2:
@@ -274,9 +274,9 @@ def main():
                 if review_col is None:
                     st.error("No review column found. Please ensure your CSV has a 'review' column.")
                 else:
-                    st.success(f"✓ Loaded {len(df)} reviews from column '{review_col}'")
+                    st.success(f" Loaded {len(df)} reviews from column '{review_col}'")
                     
-                    if st.button("🚀 Analyze All Reviews", type="primary"):
+                    if st.button(" Analyze All Reviews", type="primary"):
                         with st.spinner(f"Analyzing {len(df)} reviews..."):
                             # Process all reviews
                             predictions = []
@@ -324,7 +324,7 @@ def main():
                             # Download results
                             csv = results_df.to_csv(index=False)
                             st.download_button(
-                                label="📥 Download Results as CSV",
+                                label=" Download Results as CSV",
                                 data=csv,
                                 file_name="sentiment_analysis_results.csv",
                                 mime="text/csv"
@@ -341,7 +341,7 @@ def main():
             col1, col2 = st.columns(2)
             
             with col1:
-                st.markdown("### 📊 Test Set Performance")
+                st.markdown("###  Test Set Performance")
                 metrics_data = {
                     'Metric': ['Accuracy', 'Precision', 'Recall', 'F1-Score'],
                     'Score': [
@@ -368,7 +368,7 @@ def main():
                 st.plotly_chart(fig, use_container_width=True)
             
             with col2:
-                st.markdown("### ⚙️ Model Configuration")
+                st.markdown("###  Model Configuration")
                 st.json({
                     "Model Type": metadata.get('model_name', 'Unknown'),
                     "Vectorizer": metadata.get('vectorizer', 'Unknown'),
@@ -376,16 +376,16 @@ def main():
                     "Best Parameters": metadata.get('best_params', {})
                 })
                 
-                st.markdown("### 📈 Performance Insights")
+                st.markdown("###  Performance Insights")
                 f1 = metadata.get('test_f1_score', 0)
                 if f1 >= 0.90:
-                    st.success("🎉 Excellent performance! F1-Score >= 0.90")
+                    st.success(" Excellent performance! F1-Score >= 0.90")
                 elif f1 >= 0.80:
-                    st.success("✅ Good performance! F1-Score >= 0.80")
+                    st.success(" Good performance! F1-Score >= 0.80")
                 elif f1 >= 0.70:
-                    st.warning("⚠️ Moderate performance. F1-Score >= 0.70")
+                    st.warning(" Moderate performance. F1-Score >= 0.70")
                 else:
-                    st.error("❌ Low performance. Consider retraining.")
+                    st.error(" Low performance. Consider retraining.")
         else:
             st.info("No metadata available. Run the training notebook to generate model metadata.")
 
